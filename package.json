@@ -3,9 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "watch-server": "nodemon --watch './**/*' -e ts, ./dist/bin/www",
+    "build": "tsc",
+    "start": "npm run build && npm run watch-server"
   },
   "dependencies": {
+    "@types/node": "^12.11.1",
     "body-parser": "^1.19.0",
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
@@ -14,6 +17,7 @@
     "http-errors": "~1.6.3"
   },
   "devDependencies": {
-    "nodemon": "^1.19.1"
+    "nodemon": "^1.19.1",
+    "typescript": "^3.6.4"
   }
 }
