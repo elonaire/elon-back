@@ -1,14 +1,13 @@
-export {};
-const express = require('express');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
-const cors = require('cors');
+import express, { Application, Request, Response, NextFunction } from 'express';
+import path from 'path';
+import cookieParser from 'cookie-parser'
+import bodyParser from 'body-parser';
+import cors from 'cors';
 
 const indexRouter = require('./api/routes/index');
 const usersRouter = require('./api/routes/users');
 
-const app = express();
+const app: Application = express();
 let errorStatus: number;
 
 let whitelist: string[] = ['http://localhost:4300'];
@@ -31,7 +30,7 @@ app.use('/', cors(), indexRouter);
 app.use('/users', cors(), usersRouter);
 
 // error handler 
-app.use((err, req: any, res: any, next) => {
+app.use((err, req: Request, res: Response, next: NextFunction) => {
   if (err && errorStatus === 403) {
     res.status(403).json({
       message: `${err}`
