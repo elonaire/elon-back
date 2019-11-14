@@ -22,7 +22,7 @@ let corsOptions = {
       callback(new Error('Access to elonaire is denied'));
     }
   }
-}
+};
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
